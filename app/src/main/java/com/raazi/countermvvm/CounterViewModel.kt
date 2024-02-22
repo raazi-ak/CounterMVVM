@@ -3,16 +3,17 @@ package com.raazi.countermvvm
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 
 class CounterViewModel : ViewModel(){
-    private val _count = mutableStateOf(0)
+    private var _repository: CounterRepository = CounterRepository()
+    private val _count = mutableStateOf(_repository.getCounter().count)
     val count : MutableState<Int> = _count
     fun increment(){
-        _count.value++
+        _repository.increment()
+        _count.value=_repository.getCounter().count
     }
     fun decrement(){
-        _count.value--
+        _repository.decrement()
+        _count.value=_repository.getCounter().count
     }
 }

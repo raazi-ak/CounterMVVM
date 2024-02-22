@@ -56,9 +56,7 @@ fun CounterApp(viewModel: CounterViewModel){
                 Text(text = "Increase Counter")
             }
             Button(onClick = { viewModel.decrement()
-            if (viewModel.count.value <0){
-                viewModel.count.value=0
-            }}) {
+            }) {
                 Text(text = "Decrease Counter")
             }
         }
